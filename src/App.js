@@ -17,6 +17,7 @@ function App() {
           rel="noopener noreferrer"
         >
           Welcome to Doorsmash!
+          Rendering in netlify
         </a>
       </header>
     </div>
