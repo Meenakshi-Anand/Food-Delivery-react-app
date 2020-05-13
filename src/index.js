@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {signUp,login} from './util/session_api_util.js'
+
+
 document.addEventListener('DOMContentLoaded', ()=>{
   window.signUp = signUp;
   window.login = login
