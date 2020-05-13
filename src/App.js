@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import Login from './components/login'
+
 function App() {
   return (
     <div>
       Welcome to Doorsmash!
-      <Login />
+      <a href="/login"> Login </a>
+      <a href="/signup"> Sign up </a>
     </div>
   );
 }
