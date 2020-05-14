@@ -3,7 +3,7 @@ import $ from 'jquery';
 export const signUp = (user) => (
   $.ajax({
     method: 'POST',
-    url: 'http://doorsmash.herokuapp.com/api/user',
+    url: 'http://doorsmash.herokuapp.com/api/user/',
     data: user
   })
 );
@@ -11,7 +11,7 @@ export const signUp = (user) => (
 export const login = (user) => (
   $.ajax({
     method: 'POST',
-    url: 'http://doorsmash.herokuapp.com/api/session',
+    url: 'http://doorsmash.herokuapp.com/api/session/',
     data: user
   })
 );
