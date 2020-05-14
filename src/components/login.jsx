@@ -32,7 +32,7 @@ class Login extends React.Component{
     if (this.state.showProfile){
       return <Redirect to={{
               pathname: "/profile",
-              state: { user: this.state.user.u}
+              state: { user: this.state.user.user}
             }}/>
     }
       return(
