@@ -30,25 +30,26 @@ class Login extends React.Component{
   render(){
     var new_user = this.state.user;
     if (this.state.showProfile){
-      return <Redirect to={{
-              pathname: "/profile",
-              state: { user: this.state.user.user}
-            }}/>
+      {/* return <Redirect to={{
+             pathname: "/profile",
+            state: { user: this.state.user.user}
+      }}/>*/}
+      return <Profile user = {this.state.user.user}/>
     }
       return(
         <form onSubmit={this.handleSubmit}>
-        <h1> Login </h1>
-        <label>
-        Email :
-        <input name="email" type="text" value={ this.state.email }
-        onChange={this.handleInputChange}/>
-        </label>
-        <label>
-        Password :
-        <input name="password" type="password" value={ this.state.password }
-        onChange={this.handleInputChange}/>
-        </label>
-        <input type="submit" value="Submit" />
+          <h1> Login </h1>
+          <label>
+          Email :
+          <input name="email" type="text" value={ this.state.email }
+          onChange={this.handleInputChange}/>
+          </label>
+          <label>
+          Password :
+          <input name="password" type="password" value={ this.state.password }
+          onChange={this.handleInputChange}/>
+          </label>
+          <input type="submit" value="Submit" />
         </form>
       );
   }

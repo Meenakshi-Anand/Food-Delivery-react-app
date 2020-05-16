@@ -7,7 +7,8 @@ class Profile extends React.Component{
   render(){
       return(
       <div>
-      Welcome {this.props.location.state.user.name} !
+      {/* Welcome {this.props.location.state.user.name} !*/}
+      Welcome {this.props.user.name}!
       </div>);
   }
 }
