@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   window.signUp = signUp;
   window.login = login;
   const root = document.getElementById('root');
-  ReactDOM.render(<App/>,root);
+  ReactDOM.render(<App />,root);
 });
 
 // If you want your app to work offline and load faster, you can change

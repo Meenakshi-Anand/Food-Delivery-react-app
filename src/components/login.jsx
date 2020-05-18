@@ -1,20 +1,30 @@
 import * as APIUtil from '../util/session_api_util';
 import React from 'react';
 import Profile from './profile';
-import {Redirect} from 'react-router-dom';
+import {setCookie,getCookie} from '../util/cookie';
+
+
 class Login extends React.Component{
   constructor(props){
     super(props);
-    this.state = { email: '',password: '', showProfile: false, user:null };
+    this.state = { email: '',password: '', showProfile: false};
+    this.setCookieAndCurrentUser = this.setCookieAndCurrentUser.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  setCookieAndCurrentUser(data){
+    setCookie('token',data['jwt'],1);
+    let currentUser = JSON.stringify(data['user']);
+    setCookie('currentUser',currentUser,1);
+    this.setState({showProfile:true});
   }
 
   handleSubmit(event){
     event.preventDefault();
     APIUtil.login({email:this.state.email,password:this.state.password})
     .then(
-      (user)=>(this.setState({ showProfile:true, user:user })),
+      (user)=>(this.setCookieAndCurrentUser(user)),
       (err) => ( console.log(err.responseJSON[0])
     ));
   }
@@ -28,13 +38,11 @@ class Login extends React.Component{
   });
   }
   render(){
-    var new_user = this.state.user;
-    if (this.state.showProfile){
-      {/* return <Redirect to={{
-             pathname: "/profile",
-            state: { user: this.state.user.user}
-      }}/>*/}
-      return <Profile user = {this.state.user.user}/>
+
+    let currentUser = getCookie('currentUser');
+    console.log(currentUser);
+    if (currentUser){
+      return <Profile user = {currentUser}/>
     }
       return(
         <form onSubmit={this.handleSubmit}>
