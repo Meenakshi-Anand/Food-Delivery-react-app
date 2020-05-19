@@ -13,7 +13,6 @@ class AddressForm extends React.Component{
     let value = target.value;
     let address = this.props.address
     address[name] = value
-    console.log(address,"address");
     this.props.handleAddressInputChange(address);
   }
   render(){

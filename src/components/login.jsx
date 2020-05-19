@@ -7,7 +7,7 @@ import {setCookie,getCookie} from '../util/cookie';
 class Login extends React.Component{
   constructor(props){
     super(props);
-    this.state = { email: '',password: '', showProfile: false};
+    this.state = { email: props.email || '',password: props.password || '', showProfile: false};
     this.setCookieAndCurrentUser = this.setCookieAndCurrentUser.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -40,7 +40,6 @@ class Login extends React.Component{
   render(){
 
     let currentUser = getCookie('currentUser');
-    console.log(currentUser);
     if (currentUser){
       return <Profile user = {currentUser}/>
     }

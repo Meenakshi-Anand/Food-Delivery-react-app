@@ -1,13 +1,13 @@
 import React from 'react';
 import AddressForm from './address';
-import Profile from './profile';
+import Login from './login';
 import * as APIUtil from '../util/session_api_util';
 import {setCookie,getCookie} from '../util/cookie';
 
 class SignUpForm extends React.Component{
   constructor(props){
     super(props);
-    this.setCookieAndCurrentUser = this.setCookieAndCurrentUser.bind(this);
+
     this.handleAddressInputChange = this.handleAddressInputChange.bind(this);
     this.handleEntityTypeInputChange = this.handleEntityTypeInputChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,14 +26,9 @@ class SignUpForm extends React.Component{
         country: 'USA',
         zipcode: ''
       },
-      showProfile: false
+      showProfile: false,
+      user: null
     };
-  }
-
-  setCookieAndCurrentUser(data){
-    setCookie('token',data['jwt'],1);
-    let currentUser = JSON.stringify(data['user']);
-    setCookie('currentUser',currentUser,1);
   }
 
   handleAddressInputChange(address){
@@ -74,16 +69,15 @@ class SignUpForm extends React.Component{
       zipcode: userDetails.address.zipcode
     })
     .then(
-      (user)=>(this.setCookieAndCurrentUser(user)),
+      (user)=>(this.setState({showProfile:true,user:user})),
       (err) => ( console.log(err.responseJSON[0])
     ));
   }
 
   render(){
     let currentUser = getCookie('currentUser');
-    console.log(currentUser);
-    if (currentUser){
-      return <Profile user = {currentUser}/>
+    if (this.state.showProfile){
+      return <Login email = {this.state.email} password={this.state.password}/>
     }
     return(
       <form>
